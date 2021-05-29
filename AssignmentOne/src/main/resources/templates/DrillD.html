@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+        <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title th:text="#{DrillDown}"></title>
+        </head>
+    
+        <br>
+        <br>
+        <h3 th:text="#{SearchResults}"><b></b></h3>
+        <table class="w3-table-all" border="1" cellspacing="1">
+            <thead>
+                <tr>
+                    <th th:text="#{Country}"></th>
+                    <th th:text="#{ISOCode}"></th>
+                    <th th:text="#{VaccinationDate}"></th>
+                    <th th:text="#{TotalVaccinations}"></th>
+                    <th th:text="#{PeopleVaccinated}"></th>               
+                </tr>
+            </thead>
+            <tbody>
+          
+          
+        <tr th:each="aVaccine: ${model.searchVac}">  
+                <td th:text="${aVaccine.country}"/>
+                <td th:text="${aVaccine.iso_code}"/>
+                <td th:text="${aVaccine.v_date}"/>             
+                <td th:text="${aVaccine.total_vaccinations}"/>           
+                <td th:text="${aVaccine.people_vaccinated}"/> 
+
+        </tr>   
+                
+        </tbody>     
+     </table>
+        
+                <table class="w3-table-all" border="1" cellspacing="1">
+            <thead>
+                <tr>
+                    <th th:text="#{Image}"></th>
+                    <th th:text="#{ID}"></th>
+                    <th th:text="#{Vaccine}"></th>
+                    <th th:text="#{CostPerDose}"></th>
+                    <th th:text="#{Efficacy}"></th>               
+                </tr>
+            </thead>
+            <tbody>
+          
+          
+        <tr th:each="aVaccine: ${model.searchVaccine}">  
+            <td><img th:src="@{${'/images/images/' + aVaccine.id + '.jpg'}}"  /></td>
+                <td th:text="${aVaccine.id}"/>
+                <td th:text="${aVaccine.vaccine}"/>             
+                <td th:text="${#numbers.formatCurrency(aVaccine.cost_per_dose)}"/>           
+                <td th:text="${aVaccine.efficacy}"/>
+
+        </tr>   
+                
+        </tbody>     
+     </table>
+        
+    </body>
+</html>
